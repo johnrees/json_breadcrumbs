@@ -28,26 +28,29 @@ jQuery ->
 
   $("a.toggler").live 'click', (e) ->
     e.preventDefault()
-    $(this).next('ul').toggle()
+    console.log $(this).next().next()
+    $(this).next().next().stop().slideToggle('fast')
 
 
   t = (object) ->
     Object.prototype.toString.call( object )
 
   iterate = (object, ul) ->
+    toggler = "<a href='#' class='toggler'>+/-</a> "
+
     if t(object) is "[object String]"
       object = { $: object }
     for key, value of object
       switch t(value)
         when "[object Object]"
-          a = $("<li class='object' data-key='#{key}'><a href='#' class='key'>#{key}</a><ul>")
+          a = $("<li class='object' data-key='#{key}'>#{toggler}<a href='#' class='key'>#{key}</a><ul>")
           ul.append a
-          # <a href='#' class='toggler'>+/-</a>
+          #
           iterate(value, a.find('ul').last())
           # <li class='object' data-key='#{key}'><a href='#' class='key'>#{key}</a><ul></ul></li>
         when "[object Array]"
           # # el = element.append "<li class='array' data-key='#{key}'><a href='#' class='toggler'>+/-</a> <a href='#' class='key'>#{key}</a><ul></ul></li>"
-          a = $("<li class='array' data-key='#{key}'><a href='#' class='key'>#{key}</a>")
+          a = $("<li class='array' data-key='#{key}'>#{toggler}<a href='#' class='key'>#{key}</a>")
           ul.append a
           index = 0
           for node in value
@@ -56,6 +59,7 @@ jQuery ->
             index++
         else
           ul.append("<li class='string' data-key='#{key}'><a href='#' class='key'>#{key}</a> #{value}</li>")
+
 
   $('#input').change ->
     object = jQuery.parseJSON($(this).val())

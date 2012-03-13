@@ -39,13 +39,15 @@
     });
     $("a.toggler").live('click', function(e) {
       e.preventDefault();
-      return $(this).next('ul').toggle();
+      console.log($(this).next().next());
+      return $(this).next().next().stop().slideToggle('fast');
     });
     t = function(object) {
       return Object.prototype.toString.call(object);
     };
     iterate = function(object, ul) {
-      var a, index, key, node, value, _results;
+      var a, index, key, node, toggler, value, _results;
+      toggler = "<a href='#' class='toggler'>+/-</a> ";
       if (t(object) === "[object String]") {
         object = {
           $: object
@@ -56,12 +58,12 @@
         value = object[key];
         switch (t(value)) {
           case "[object Object]":
-            a = $("<li class='object' data-key='" + key + "'><a href='#' class='key'>" + key + "</a><ul>");
+            a = $("<li class='object' data-key='" + key + "'>" + toggler + "<a href='#' class='key'>" + key + "</a><ul>");
             ul.append(a);
             _results.push(iterate(value, a.find('ul').last()));
             break;
           case "[object Array]":
-            a = $("<li class='array' data-key='" + key + "'><a href='#' class='key'>" + key + "</a>");
+            a = $("<li class='array' data-key='" + key + "'>" + toggler + "<a href='#' class='key'>" + key + "</a>");
             ul.append(a);
             index = 0;
             _results.push((function() {
