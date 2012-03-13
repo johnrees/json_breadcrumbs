@@ -1,0 +1,94 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title></title>
+  <meta name="description" content="">
+  <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>-->
+  <script src="assets/javascripts/jquery.min.js"></script>
+  <script src="assets/javascripts/index.js"></script>
+  <style type="text/css" media="screen">
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      margin-bottom: 50px;
+    }
+    textarea {
+      display: block;
+      padding: 10px;
+    }
+    #output {
+      font-family: Menlo, fixed;
+    }
+    ul#path {
+      padding: 0;
+      border: none;
+      color: #FFF;
+      line-height: 40px;
+      background: black;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 40px;
+    }
+    ul,li {
+      list-style: none;
+    }
+    ul ul {
+      margin-left: 10px;
+    }
+    body.debug li.string {
+      background: yellow;
+    }
+    body.debug li.object {
+      background: pink;
+    }
+    body.debug li.array {
+      background: orange;
+    }
+    ul#path li {
+      display: inline;
+      margin-right: 5px;
+    }
+    label {
+      display: block;
+    }
+    div {
+      overflow: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: #888;
+    }
+    body.debug ul {
+      border: 1px solid red;
+    }
+  </style>
+</head>
+<body class="">
+  <div role="main">
+    <div class="field">
+      <label for="input">JSON</label>
+      <textarea name="input" id="input" rows="8" cols="40"></textarea>
+    </div>
+    <div class="field">
+      <input type="submit" name="submit" value="Parse" id="submit">
+    </div>
+
+    <ul id="path"></ul>
+
+    <div id="output"><ul></ul></div>
+
+  </div>
+</body>
+</html>
